@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		29735EC028002E7F00ADA405 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29735EBF28002E7F00ADA405 /* LaunchScreen.storyboard */; };
+		29735EC5280034C800ADA405 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29735EC4280034C800ADA405 /* LoginView.swift */; };
+		29735EC728003B9700ADA405 /* LoginView+TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29735EC628003B9700ADA405 /* LoginView+TextFieldDelegate.swift */; };
 		29D16A3A28002D870017FBFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D16A3928002D870017FBFE /* AppDelegate.swift */; };
 		29D16A3C28002D870017FBFE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D16A3B28002D870017FBFE /* SceneDelegate.swift */; };
 		29D16A3E28002D870017FBFE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D16A3D28002D870017FBFE /* LoginViewController.swift */; };
@@ -16,6 +18,8 @@
 
 /* Begin PBXFileReference section */
 		29735EBF28002E7F00ADA405 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		29735EC4280034C800ADA405 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		29735EC628003B9700ADA405 /* LoginView+TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginView+TextFieldDelegate.swift"; sourceTree = "<group>"; };
 		29D16A3628002D870017FBFE /* Bank App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bank App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29D16A3928002D870017FBFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29D16A3B28002D870017FBFE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,6 +39,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29735EC22800337200ADA405 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				29D16A3B28002D870017FBFE /* SceneDelegate.swift */,
+				29D16A4228002D870017FBFE /* Assets.xcassets */,
+				29D16A4728002D870017FBFE /* Info.plist */,
+				29735EBF28002E7F00ADA405 /* LaunchScreen.storyboard */,
+			);
+			name = Files;
+			sourceTree = "<group>";
+		};
+		29735EC3280033FB00ADA405 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				29D16A3D28002D870017FBFE /* LoginViewController.swift */,
+				29735EC4280034C800ADA405 /* LoginView.swift */,
+				29735EC628003B9700ADA405 /* LoginView+TextFieldDelegate.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		29D16A2D28002D860017FBFE = {
 			isa = PBXGroup;
 			children = (
@@ -54,12 +79,9 @@
 		29D16A3828002D870017FBFE /* Bank App */ = {
 			isa = PBXGroup;
 			children = (
+				29735EC22800337200ADA405 /* Files */,
+				29735EC3280033FB00ADA405 /* Login */,
 				29D16A3928002D870017FBFE /* AppDelegate.swift */,
-				29D16A3B28002D870017FBFE /* SceneDelegate.swift */,
-				29D16A3D28002D870017FBFE /* LoginViewController.swift */,
-				29D16A4228002D870017FBFE /* Assets.xcassets */,
-				29D16A4728002D870017FBFE /* Info.plist */,
-				29735EBF28002E7F00ADA405 /* LaunchScreen.storyboard */,
 			);
 			path = "Bank App";
 			sourceTree = "<group>";
@@ -135,7 +157,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				29D16A3E28002D870017FBFE /* LoginViewController.swift in Sources */,
+				29735EC728003B9700ADA405 /* LoginView+TextFieldDelegate.swift in Sources */,
 				29D16A3A28002D870017FBFE /* AppDelegate.swift in Sources */,
+				29735EC5280034C800ADA405 /* LoginView.swift in Sources */,
 				29D16A3C28002D870017FBFE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
