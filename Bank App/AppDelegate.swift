@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         loginViewController.delegate = self
         pageViewController.delegate = self
-        mainViewController.delegate = self
         
         window?.rootViewController = loginViewController
         
@@ -34,15 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: LoginViewControllerDelegate {
     func didLogin() {
+//        mainViewController.selectedIndex = 2
         setRootViewController(LocalStorage.hasOnboarded ? mainViewController : pageViewController)
-    }
-    
-    
-}
-
-extension AppDelegate: MainViewControllerDelegate {
-    func didLogout() {
-        setRootViewController(loginViewController)
     }
     
     

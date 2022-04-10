@@ -7,54 +7,61 @@
 
 import UIKit
 
-protocol MainViewControllerDelegate: AnyObject {
-  func  didLogout()
-}
 
-class MainViewController: UIViewController {
-    weak var delegate : MainViewControllerDelegate?
-    let stackView = UIStackView()
-    let label = UILabel()
-    let button = UIButton(type: .system)
-
+class MainViewController: UITabBarController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        style()
-        layout()
+        setupViews()
+        tabBar.isTranslucent = false
+//        style()
+//        layout()
     }
+
+    private func setupViews(){
+        let summaryVC = UIViewController()
+        let moneyVC = UIViewController()
+        let moreVC = UIViewController()
+        
+        moneyVC.title = "MOney"
+        
+        summaryVC.setTabBarItem(imageName: "list.dash.header.rectangle", title: "Summary")
+        moneyVC.setTabBarItem(imageName: "arrow.left.arrow.right", title: "Money")
+        moreVC.setTabBarItem(imageName: "ellipsis.circle", title: "More")
+
+        let summaryNC = UINavigationController(rootViewController: summaryVC)
+        let moneyNC = UINavigationController(rootViewController: moneyVC)
+        let moreNC = UINavigationController(rootViewController: moreVC)
+        
+        let tabBarList = [summaryNC, moneyNC, moreNC]
+        
+        self.viewControllers = tabBarList
+        
+    }
+    
+    private func hideNavigationBarLine(_ navBar: UINavigationBar){
+        let image = UIImage()
+        navBar.shadowImage = image
+        navBar.setBackgroundImage(image, for: .default)
+        navBar.isTranslucent = false
+    }
+    
+
+
 }
 
 extension MainViewController {
+    
     func style(){
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = 20
         
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Welcome"
-        label.font = UIFont.preferredFont(forTextStyle: .title1)
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.configuration = .filled()
-        button.setTitle("Log Out", for: [])
-        button.addTarget(self, action: #selector(logoutTapped), for: .primaryActionTriggered)
     }
     
     func layout(){
-        stackView.addArrangedSubview(label)
-        stackView.addArrangedSubview(button)
-        
-        view.addSubview(stackView)
-        
-        
-        NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+
     }
     
     @objc func logoutTapped(_ sender: UIButton){
-        delegate?.didLogout()
+        
     }
 }
 
