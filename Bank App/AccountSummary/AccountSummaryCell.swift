@@ -9,6 +9,25 @@ import Foundation
 import UIKit
 
 class AccountSummaryCell: UITableViewCell {
+    
+    enum AccountType: String {
+        case Banking
+        case CreditCard
+        case Investment
+    }
+    
+    struct ViewModel{
+        let accountType: AccountType
+        let accountName: String
+        let balance: Decimal
+        
+        var balanceAsAttributedString: NSAttributedString {
+            return CurrencyFormatter().makeAttributedCurrency(balance)
+        }
+    }
+    
+    let viewModel: ViewModel? = nil
+    
     let typeLabel = UILabel()
     let nameLabel = UILabel()
     let underlineView = UIView()
@@ -18,7 +37,7 @@ class AccountSummaryCell: UITableViewCell {
     let balanceAmountLabel = UILabel()
     
     let chevroneImageView = UIImageView()
-
+    
     static let reuseID = "AccountSummaryCell"
     static let rowHeight : CGFloat = 100
     
@@ -42,7 +61,7 @@ extension AccountSummaryCell{
         contentView.addSubview(underlineView)
         contentView.addSubview(nameLabel)
         underlineView.translatesAutoresizingMaskIntoConstraints = false
-        underlineView.backgroundColor = .blue
+        underlineView.backgroundColor = .systemTeal
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.font = UIFont.preferredFont(forTextStyle: .body)
@@ -58,8 +77,8 @@ extension AccountSummaryCell{
         balanceLabel.textAlignment = .right
         
         balanceAmountLabel.translatesAutoresizingMaskIntoConstraints = false
-//        balanceAmountLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        balanceAmountLabel.text = "1 $"
+        //        balanceAmountLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        balanceAmountLabel.attributedText = formattedBalance(dollars: "9000", cents: "98")
         balanceAmountLabel.textAlignment = .right
         
         contentView.addSubview(balanceStackView)
@@ -69,8 +88,8 @@ extension AccountSummaryCell{
         chevroneImageView.translatesAutoresizingMaskIntoConstraints = false
         chevroneImageView.image = UIImage(systemName: "chevron.forward")?.withTintColor(.systemBlue, renderingMode: .alwaysOriginal)
         addSubview(chevroneImageView)
-
-
+        
+        
         
     }
     
@@ -102,7 +121,7 @@ extension AccountSummaryCell{
         // image view
         NSLayoutConstraint.activate([
             chevroneImageView.topAnchor.constraint(equalToSystemSpacingBelow: underlineView.bottomAnchor, multiplier: 1),
-//            chevroneImageView.widthAnchor.constraint(equalToConstant: 32),
+            //            chevroneImageView.widthAnchor.constraint(equalToConstant: 32),
             trailingAnchor.constraint(equalToSystemSpacingAfter: chevroneImageView.trailingAnchor, multiplier: 1)
         ])
     }
@@ -127,30 +146,42 @@ extension AccountSummaryCell{
     }
 }
 
+extension AccountSummaryCell {
+    func formattedBalance(dollars: String, cents: String) -> NSMutableAttributedString {
+        let dollarSignAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .callout), .baselineOffset: 8]
+        let dollarAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .title1)]
+        let centAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .footnote), .baselineOffset: 8]
+        
+        let rootString = NSMutableAttributedString(string: "$", attributes: dollarSignAttributes)
+        let dollarString = NSMutableAttributedString(string: dollars, attributes: dollarAttributes)
+        let centsString = NSMutableAttributedString(string: cents, attributes: centAttributes)
+        
+        rootString.append(dollarString)
+        rootString.append(centsString)
+        
+        return rootString
+        
+    }
+}
 
-//class UnderLine: UIView{
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//
-//        style()
-//        layout()
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
-//    override var intrinsicContentSize: CGSize{
-//        return CGSize(width: 200, height: 200)
-//    }
-//}
-//
-//extension CustomView {
-//    func style(){
-//        translatesAutoresizingMaskIntoConstraints = false
-//    }
-//
-//    func layout(){
-//
-//    }
-//}
+extension AccountSummaryCell {
+    func configure(with vm: ViewModel){
+        typeLabel.text = vm.accountType.rawValue
+        nameLabel.text = vm.accountName
+        balanceAmountLabel.attributedText = vm.balanceAsAttributedString
+        
+        switch vm.accountType {
+        case .Banking:
+            underlineView.backgroundColor = .systemTeal
+            balanceLabel.text = "Current balance"
+            
+        case .CreditCard:
+            underlineView.backgroundColor = .systemOrange
+            balanceLabel.text = "Balance"
+            
+        case .Investment:
+            underlineView.backgroundColor = .systemPink
+            balanceLabel.text = "Value"
+        }
+    }
+}

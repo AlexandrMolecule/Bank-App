@@ -52,7 +52,7 @@
                         </stackView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="globe.europe.africa.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Qd9-hp-c7a">
                             <rect key="frame" x="238" y="0.5" width="100" height="111"/>
-                            <color key="tintColor" systemColor="systemBlueColor"/>
+                            <color key="tintColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="100" id="lie-VW-2qh"/>
                                 <constraint firstAttribute="height" constant="100" id="smH-kZ-FTB"/>
@@ -77,9 +77,6 @@
         <image name="globe.europe.africa.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
